@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import {Box,Stack} from '@mui/material';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
+import SidebarIcons from './components/SidebarIcons';
+import {useState} from 'react';
+import MiddleSide from './components/MiddleSide';
 
 function App() {
+
+  const [open,setOpen] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box>
+        <Navbar open={open} setOpen={setOpen} />
+        <Stack direction="row" >
+          {open ? <Sidebar  /> :
+          <SidebarIcons /> } 
+          <MiddleSide />
+        </Stack>
+    </Box>
   );
 }
 
